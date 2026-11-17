@@ -1,0 +1,1037 @@
+/* =========================================
+   RESET Y ESTILOS BASE
+========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    max-width: 100vw;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    color: #1a1a1a;
+}
+
+.responsive-logo {
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: clamp(180px, 25vw, 350px); 
+    z-index: 100; 
+    will-change: top, width; 
+}
+
+.logo-blanco {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0; 
+}
+
+.logo-negro {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1; 
+}
+
+/* =========================================
+   HERO Y DIAPOSITIVAS DE FONDO
+========================================= */
+.hero-section {
+    position: absolute; 
+    inset: 0;
+    z-index: 1;
+    height: 100vh; 
+    height: 100dvh; 
+    width: 100%;
+    background: url('img/banner.jpg') no-repeat center center/cover; 
+    display: flex;
+    align-items: flex-end; 
+    justify-content: center;
+    padding-bottom: 50px;
+    overflow: hidden;
+}
+
+.hero-slideshow {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1; 
+}
+
+.slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fadeSlides 15s infinite; 
+}
+
+.slide.bg-1 { background-image: url('img/banner.jpg'); animation-delay: 0s; }
+.slide.bg-2 { background-image: url('img/banner.jpg'); animation-delay: 5s; }
+.slide.bg-3 { background-image: url('img/banner.jpgg'); animation-delay: 10s; }
+
+@keyframes fadeSlides {
+    0% { opacity: 0; }
+    15% { opacity: 1; } 
+    33% { opacity: 1; } 
+    48% { opacity: 0; } 
+    100% { opacity: 0; }
+}
+
+#master-pin {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+#proyectos, .gallery-section {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none; 
+    background: transparent !important; 
+}
+
+/* =========================================
+   CANVAS LENTE WEBGL
+========================================= */
+#lens-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10; /* Se coloca sobre las imágenes de fondo, pero debajo de los textos */
+    pointer-events: none; 
+}
+
+/* IMPORTANTE: Aseguramos que el Hero permita leer el mouse */
+.hero-section {
+    pointer-events: auto;
+}
+
+@keyframes metamorfosis-liquida {
+    0% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: rotate(0deg); }
+    25% { border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; transform: rotate(90deg); }
+    50% { border-radius: 50%; transform: rotate(180deg); } 
+    75% { border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%; transform: rotate(270deg); }
+    100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: rotate(360deg); }
+}
+
+.scroll-indicator {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); 
+    opacity: 0.7;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.intro-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #ffffff; 
+    z-index: 2; 
+}
+
+/* =========================================
+   GALERÍA PRINCIPAL (TARJETAS)
+========================================= */
+.gallery-pin-container {
+    position: absolute; 
+    inset: 0;
+    z-index: 2; 
+    pointer-events: none; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cards-wrapper {
+    position: relative;
+    width: 90vw;
+    max-width: 1000px;
+    height: 60vh;
+    perspective: 1000px; 
+    z-index: 10;
+    pointer-events: none;
+}
+
+.card {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transform-origin: center bottom;
+    will-change: transform, opacity;
+    overflow: hidden;
+    background-color: #2e3842;
+    transition: box-shadow 0.3s ease;
+    pointer-events: auto;
+}
+
+.card:hover {
+    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+}
+
+.card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+
+
+
+/* =========================================
+   PROYECTO EXPANDIDO (CASE STUDY)
+========================================= */
+.project-modal { 
+    position: fixed; 
+    inset: 0; 
+    background: #2e3842; 
+    z-index: 3000; 
+    overflow-y: auto; 
+    visibility: hidden; 
+    opacity: 0; 
+    transition: opacity 0.5s ease, visibility 0.5s ease; 
+}
+
+.project-modal.active { 
+    visibility: visible; 
+    opacity: 1; 
+}
+
+
+.project-hero { 
+    width: 100%; 
+    height: 15vh; 
+    position: relative; 
+    overflow: hidden; 
+    transform-style: preserve-3d; 
+}
+
+.project-hero img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.project-hero h2 { 
+    position: absolute; 
+    bottom: 40px; 
+    left: 5vw; 
+    color: #fff; 
+    font-size: clamp(2rem, 5vw, 4rem); 
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    z-index: 10; 
+}
+
+.project-content { 
+    padding: 80px 5vw; 
+    max-width: 2200px; 
+    margin: 0 auto; 
+}
+
+.layout-galeria { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+}
+
+.layout-galeria img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.layout-estudio .texto-estudio { 
+    font-size: 1.2rem; 
+    line-height: 1.8; 
+    color: #444;
+    margin-bottom: 50px; 
+    max-width: 800px; 
+}
+
+/* =========================================
+   CINTAS Y MÓDULOS DE CONTENIDO
+========================================= */
+.cinta-info {
+    background-color: #21b2a6; 
+    color: #ffffff;
+    padding: 5em 2em;
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+.cinta-info .cinta-inner {
+    max-width: 60em;
+    margin: 0 auto;
+}
+
+.cinta-info p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.cinta-titulo {
+    background-color: #f7f7f7; 
+    color: #2e3842;
+    padding: 0.8rem 0; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.texto-gigante {
+    font-family: inherit;
+    font-size: 11vw; 
+    font-weight: 150;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+    margin: 0;
+    line-height: 0.65; 
+}
+
+.tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5em;
+    width: 100%;
+    margin-top: 1em;
+}
+
+.tile-item {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: zoom-in;
+    aspect-ratio: 1 / 1; 
+}
+
+.tile-item .image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.tile-item .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 6px;
+}
+
+.tile-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(33, 33, 33, 0.4); 
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.tile-item:hover .image {
+    transform: scale(1.1);
+}
+
+.tile-item:hover::before {
+    opacity: 1;
+}
+
+.programas-section {
+    background-color: #2e3842; 
+    padding: 6em 2em;
+    display: flex;
+    justify-content: center;
+}
+
+.programas-contenedor {
+    display: flex;
+    gap: 3em;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.programa-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2.5em 4em;
+    border-radius: 4px;
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.programa-card h3 {
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.225em;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.programa-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.anamorfosis-layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #2e3842; 
+}
+
+.fila-hibrida {
+    display: flex;
+    flex-direction: row; 
+    width: 100%;
+}
+
+.fila-hibrida.reversa {
+    flex-direction: row-reverse;
+}
+
+.bloque-cuadrado {
+    flex: 0 0 25vw; 
+    aspect-ratio: 1 / 1; 
+    position: relative;
+    overflow: hidden;
+}
+
+.bloque-cuadrado img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+.bloque-rectangulo {
+    flex: 1; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 4rem;
+    background-color: rgba(0, 0, 0, 0.15); 
+    color: #ffffff;
+}
+
+.contenido-rectangulo {
+    max-width: 600px;
+}
+
+.contenido-rectangulo h3 {
+    font-size: 1.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.galeria-fila {
+    display: flex;
+    gap: 1.5rem; 
+    width: 100%;
+    margin: 2rem 0; 
+    box-sizing: border-box;
+}
+
+.galeria-fila img {
+    flex: 1;
+    min-width: 0; 
+    width: 100%;
+    height: 450px; 
+    object-fit: cover;
+    border-radius: 12px; 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15); 
+}
+
+/* =========================================
+   FOOTER MINIMALISTA
+========================================= */
+.minimal-footer {
+    position: absolute; 
+    bottom: 500px; /* Cambiado: Ya no usa inset:0 que bloqueaba toda la pantalla */
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    z-index: 100; /* Lo subimos para que ninguna tarjeta lo tape */
+    pointer-events: auto !important; /* Forzamos a que acepte clics sí o sí */
+}
+
+.social-icons {
+    list-style: none;
+    display: flex;
+    gap: 15px; 
+    margin-bottom: 25px;
+}
+
+.social-icons .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgba(0, 0, 0, 0.15); 
+    border-radius: 50%; 
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons .icon:hover {
+    color: #f7f7f7;
+    background-color: #1a1a1a; 
+    border-color: #1a1a1a;
+}
+
+.copyright {
+    color: rgba(0, 0, 0, 0.5); 
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.copyright a {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3); 
+    padding-bottom: 1px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.copyright a:hover {
+    color: #1a1a1a;
+    border-bottom-color: transparent; 
+}
+
+/* =========================================
+   ADAPTACIONES PARA MÓVIL (RESPONSIVE UNIFICADO)
+========================================= */
+@media screen and (max-width: 768px) {
+    
+
+    /* HACER LAS TARJETAS MÁS CUADRADAS EN MÓVIL */
+    .cards-wrapper {
+        width: 85vw;
+        height: 85vw; /* Al usar vw en height, lo hacemos un cuadrado perfecto respecto al ancho */
+        max-height: 55vh; /* Límite para que no se coma toda la pantalla alta */
+    }
+
+    .hero-section {
+        height: 100dvh; 
+    }
+    
+    .responsive-logo {
+        top: 50dvh; 
+        width: 150px; 
+    }
+    
+   
+
+    .tiles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .texto-gigante {
+        font-weight: 200;
+        line-height: 0.2; 
+    }
+
+    .fila-hibrida,
+    .fila-hibrida.reversa {
+        flex-direction: column;
+    }
+    
+    .bloque-cuadrado {
+        flex: auto;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+    }
+    
+    .bloque-rectangulo {
+        padding: 3rem 2rem;
+    }
+
+    .galeria-fila {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .galeria-fila img {
+        height: auto;
+        max-height: 400px;
+    }
+
+/* Volver las cuadrículas verticales en móvil */
+    /* Las cuadrículas de 2 y 3 fotos pasan a 1 sola columna en móvil */
+    .grid-2-horizontal, 
+    .grid-3-horizontal {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+        margin: 40px 0;
+    }
+
+    /* Forzamos a que las fotos en móvil sean cuadradas perfectas */
+    .grid-2-horizontal img, 
+    .grid-3-horizontal img,
+    .layout-a .hero-rounded {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1 !important; 
+        object-fit: cover;
+    }
+
+}
+
+/* =========================================
+   REGLAS DE SEGURIDAD INTERACTIVAS
+========================================= */
+.cards-wrapper, 
+.cards-wrapper *,
+.minimal-footer, 
+.minimal-footer * {
+    pointer-events: auto !important;
+}
+
+.card a, 
+.minimal-footer a, 
+.minimal-footer button {
+    cursor: pointer !important;
+}
+
+/* =========================================
+   NUEVOS TÍTULOS DE FONDO (BEBAS NEUE)
+========================================= */
+.bg-title-container {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 20vh; /* Ajustamos altura */
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0; /* Oculto al inicio para que no se vea hasta bajar */
+}
+
+.bg-title-track {
+    display: flex;
+    flex-direction: column;
+    /* La transición se controla por GSAP al hacer scroll */
+}
+
+.bg-title-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 20vw, 18rem);
+    line-height: 1; /* Cambiado a 1 para que NO se corte por arriba */
+    color: #f0f0f0; 
+    margin: 0;
+    padding: 0; /* Quitamos el padding que lo desfasaba */
+    height: 20vh; /* Misma altura que el contenedor */
+    display: flex;
+    align-items: center; /* Centrado perfecto verticalmente */
+    justify-content: center;
+    letter-spacing: 0px; 
+}
+
+/* =========================================
+   TEXTOS CLAROS PARA EL FONDO OSCURO
+========================================= */
+.layout-a p,
+.layout-b-text-split .col-70 p,
+.layout-b-text-split .col-30 p,
+.layout-estudio .texto-estudio {
+    color: #e0e0e0; /* Gris muy claro para lectura cómoda */
+}
+
+.layout-b-text-split .col-30 h4 {
+    color: #a0aab5; /* Gris azulado para subtítulos */
+}
+
+
+/* =========================================
+   ESTRUCTURAS DE LOS NUEVOS LAYOUTS
+========================================= */
+.project-content {
+    padding: 0;
+    max-width: 100vw;
+    margin: 0 auto;
+}
+
+/* --- Layout A --- */
+.layout-a {
+    padding: 5vh 5vw;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+.layout-a .hero-rounded {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+    border-radius: 30px;
+    margin-bottom: 40px;
+}
+.layout-a p {
+    font-size: 1.2rem; line-height: 1.8; color: #444;
+    margin-bottom: 20px; max-width: 900px;
+}
+/* =========================================
+   ACTUALIZACIÓN: GRIDS PERFECTOS Y CONTROL DE COLOR
+========================================= */
+.grid-2-horizontal, 
+.grid-3-horizontal {
+    display: grid; /* Cambiado de flex a grid */
+    width: 100%;
+    gap: 3vw;
+    margin: 60px 0;
+    box-sizing: border-box; /* Obliga a respetar los límites de la pantalla */
+}
+
+/* Forzamos a que sean 2 o 3 columnas iguales */
+.grid-2-horizontal { grid-template-columns: repeat(2, 1fr); }
+.grid-3-horizontal { grid-template-columns: repeat(3, 1fr); }
+
+.grid-2-horizontal img, 
+.grid-3-horizontal img {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* CONTROL DE COLORES PARA LAS TARJETAS */
+.project-content p {
+    color: #e0e0e0; /* Cambia este valor por el color de texto que prefieras */
+}
+
+.project-content h1, 
+.project-content h2, 
+.project-content h3, 
+.project-content h4 {
+    color: #ffffff; /* Color para los títulos de adentro de la tarjeta */
+}
+
+/* --- Layout B --- */
+.layout-b-block {
+    margin-bottom: 100px;
+}
+.layout-b-hero {
+    width: calc(100% - 10vw);
+    margin: 5vh auto 0 auto;
+    height: 50vh;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.layout-b-hero img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+.layout-b-hero .center-btn {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1a1a1a69; color: #fff; 
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px); 
+    padding: 15px 40px; border-radius: 30px;
+    text-decoration: none; font-size: 1.1rem;
+    text-transform: uppercase; letter-spacing: 2px;
+    transition: background 0.3s;
+}
+.layout-b-hero .center-btn:hover { background: #444; }
+
+.layout-b-text-split {
+    display: flex;
+    width: calc(100% - 10vw);
+    margin: 40px auto 0 auto;
+    gap: 5vw;
+}
+.col-70 { flex: 0 0 70%; }
+.col-30 { flex: 0 0 25%; text-align: right; border-left: 1px solid #ccc; padding-left: 20px; }
+.col-70 p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 15px; }
+.col-30 h4 { font-size: 0.9rem; text-transform: uppercase; color: #888; margin-bottom: 5px; }
+.col-30 p { font-size: 1.1rem; margin-bottom: 20px; }
+
+/* =========================================
+   LAYOUT C: CINTA CURVA MATEMÁTICA (RIBBON)
+========================================= */
+.layout-c-ribbon {
+    position: relative;
+    width: 100vw;
+    height: 100dvh;
+    background: #1a1a1a;
+    overflow: hidden; 
+}
+
+#ribbon-container-layout-c {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none; /* Para no bloquear clics */
+}
+
+/* Renombramos la clase .card de tu código a .ribbon-item para no romper el portafolio */
+.ribbon-item {
+    position: absolute;
+    top: 0; left: 0;
+    width: 680px; height: 680px;
+    background: #ffffff00;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    display: flex; flex-direction: column;
+    cursor: pointer;
+    pointer-events: auto; /* Permite clics e interacción en cada imagen */
+    transition: filter 0.3s ease;
+}
+
+.ribbon-item:hover { filter: brightness(0.92); }
+
+.ribbon-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.ribbon-item p {
+    text-align: center; padding: 0; height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 1.1rem; color: #222;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .ribbon-item { width: 350px; height: 350px; }
+    .ribbon-item img { height: 290px; }
+    .ribbon-item p { height: 60px; font-size: 1rem; }
+}
+
+/* =========================================
+   NUEVO MENÚ Y BOTÓN UNIVERSAL (CRISTAL CORREGIDO)
+========================================= */
+.glass-effect {
+    background-color: rgba(4, 4, 4, 0.195); 
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.menu-action-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10000; /* Nivel DIOS: Siempre arriba de todo */
+    transition: all 0.3s ease;
+    color: #ffffff;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0);
+}
+
+/* MAGIA: Desaparece el fondo del botón para fundirse con el panel */
+.menu-action-btn.transparent-btn {
+    background: transparent !important;
+    border-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+.menu-action-btn:hover {
+    transform: scale(1.1);
+}
+
+.menu-glass-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px; /* Inicia del mismo tamaño exacto que el botón */
+    height: 50px;
+    border-radius: 25px; /* Lo suficientemente curvo para parecer un círculo */
+    background-color: rgba(4, 4, 4, 0.063);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    z-index: 9998;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Transición física de tamaño y bordes (¡Adiós clip-path!) */
+    transition: all 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+}
+
+.menu-glass-panel.active {
+    pointer-events: auto;
+    top: 20px;
+    right: 20px;
+    width: calc(100vw - 40px); /* Rectángulo con margen perfecto */
+    height: calc(100vh - 40px);
+    border-radius: 30px; /* Bordes de rectángulo suave */
+}
+
+/* MODAL DE TARJETAS (Aseguramos que esté por debajo del botón universal) */
+.project-modal {
+    z-index: 8000 !important;
+}
+
+/* =========================================
+   MENÚ: LETRAS AGRUPADAS Y CENTRADAS FIJAS
+========================================= */
+.menu-links {
+    position: absolute; /* Esto evita que viajen desde la esquina */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column; /* Agrupadas una debajo de otra */
+    align-items: center;
+    justify-content: center;
+    gap: 3vh;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.menu-glass-panel.active .menu-links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.5s ease 0.4s; /* Aparecen después de expandirse el panel */
+}
+
+.menu-links a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 15vw, 12rem);
+    color: #ffffff; /* Inician en BLANCO */
+    text-decoration: none;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.menu-links a:hover {
+    color: #777 !important;
+    transform: scale(1.05);
+}
+
+/* =========================================
+   ADAPTACIÓN MÓVIL: FOTOS CUADRADAS Y SIN FRANJA
+========================================= */
+@media screen and (max-width: 768px) {
+    .layout-c-ribbon {
+        height: 100dvh !important; /* Elimina la franja inferior en celulares */
+        width: 100vw !important;
+    }
+    
+    .ribbon-item:not(.is-expanded) {
+        width: 85vw !important;
+        height: 85vw !important; /* Cuadrado perfecto */
+    }
+    
+    .ribbon-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .bg-title-item, .menu-links a {
+        font-size: 20vw !important; /* Ajusta el tamaño para que encaje exacto en la pantalla */
+        letter-spacing: 0px;
+    }
+}
+
+/* =========================================
+   1. COLOR INICIAL DEL MENÚ
+========================================= */
+.menu-glass-panel {
+    /* AQUÍ ELIGES EL COLOR INICIAL (En el hero) */
+    background-color: rgba(255, 255, 255, 0.086) !important; 
+}
+
+/* =========================================
+   2. AJUSTES MÓVILES (Tarjetas y Redes)
+========================================= */
+@media screen and (max-width: 768px) {
+    /* Tarjetas más alargadas y más arriba */
+    .card {
+        height: 45vh !important; /* Más alargada */
+        margin-top: -5vh !important; /* La empuja hacia arriba para no tapar los títulos */
+    }
+
+    /* Redes sociales centradas verticalmente al final */
+    .minimal-footer {
+        top: 50% !important;
+        bottom: auto !important;
+        transform: translateY(-50%) !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* SCROLL TÁCTIL EN ANAMORFOSIS (aditivo) */
+.layout-c-ribbon {
+    touch-action: none;
+    overscroll-behavior: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.ribbon-item { -webkit-tap-highlight-color: transparent; }
+.ribbon-item img {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
