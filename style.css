@@ -503,7 +503,10 @@ body {
 .social-icons {
     list-style: none;
     display: flex;
-    gap: 15px; 
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 20px;
     margin-bottom: 25px;
 }
 
